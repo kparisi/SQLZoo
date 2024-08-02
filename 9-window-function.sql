@@ -97,37 +97,17 @@ AND constituency BETWEEN 'S14000021' AND 'S14000026'
 
 
 /* 6
-Which countries have a GDP greater than every country in Europe? 
-[Give the name only.] (Some countries may have NULL gdp values)
+You can use COUNT and GROUP BY to see how each party did in Scotland. Scottish constituencies start with 'S'
+Show how many seats for each party in Scotland in 2017.
 */
 
-
-
-/* 7
-Find the largest country (by area) in each continent, show the continent, the name and the area:
-
-The above example is known as a correlated or synchronized sub-query.
-
-Using correlated subqueries
-*/
-
-
-
-/* 8
-List each continent and the name of the country that comes first alphabetically.
-*/
-
-
-
-/* 9
-Find the continents where all countries have a population <= 25000000. 
-Then find the names of the countries associated with these continents. 
-Show name, continent and population.
-*/
-
-
-/* 10
-Some countries have populations more than three times that of all of their neighbours (in the same continent). 
-Give the countries and continents.
-*/
-
+SELECT party, count(*)
+FROM ge x
+WHERE constituency LIKE 'S%'
+AND yr=2017
+AND votes >=(
+  SELECT MAX(votes)
+  FROM ge year
+  WHERE y.constituency = x.constituency
+  AND yr = 2017)
+GROUP BY party
