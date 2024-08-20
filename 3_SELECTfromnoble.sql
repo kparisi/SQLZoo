@@ -88,11 +88,32 @@ WHERE yr=1980 AND subject NOT IN ('chemistry', 'medicine')
 /*10.
 Show year, subject, and name of people who won a 'Medicine' prize in an early year (before 1910, not including 1910) together with winners of a 'Literature' prize in a later year (after 2004, including 2004) */
 
-/* */
+SELECT yr, subject, winner FROM nobel
+WHERE (subject='medicine' AND yr<1910) OR (subject='literature' AND yr>=2004)
 
-/* */
+/*11.
+Find all details of the prize won by PETER GRÜNBERG
 
-/* */
+Non-ASCII characters*/
+
+SELECT yr, subject, winner FROM nobel
+WHERE winner='Peter Grünberg'
+
+/*12 
+Find all details of the prize won by EUGENE O'NEILL
+*/
+
+SELECT yr, subject, winner FROM nobel
+WHERE winner='Eugene O''Neill'
+
+/*13
+Knights in order
+
+List the winners, year and subject where the winner starts with Sir. Show the the most recent first, then by name order. */
+SELECT winner, yr, subject FROM nobel
+WHERE winner LIKE 'Sir %'
+ORDER BY yr DESC, winner ASC
+
 
 /* */
 
