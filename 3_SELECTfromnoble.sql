@@ -127,5 +127,3 @@ CASE WHEN subject IN ('physics','chemistry') THEN 1 ELSE 0 END, subject, winner
 
 
 /* */
-
-/* */
