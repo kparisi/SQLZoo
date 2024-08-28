@@ -86,8 +86,3 @@ WHERE population  > (SELECT population FROM world WHERE name ='United Kingdom') 
 
 /* */
 
-
-/* */
-
-
-/* */
